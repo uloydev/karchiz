@@ -1,0 +1,55 @@
+.bg-color1 {
+    background-color: #010049;
+}
+.bg-color2 {
+    background-color: #112F6B;
+}
+.bg-color3 {
+    background-color: #C3DFEE;
+}
+.bg-color4 {
+    background-color: #ACACAC;
+}
+
+.text-color1 {
+    color: #010049;
+}
+.text-color2 {
+    color: #112F6B;
+}
+.text-color3 {
+    color: #C3DFEE;
+}
+.text-color4 {
+    color: #ACACAC;
+}
+
+.center-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
+
+body {
+    height: 100vh;
+}
+
+#main, #sidebar, #content {
+    height: calc(100vh - 84px);
+}
+
+#login, #register {
+    height: calc(100vh - 64px);
+}
+
+#content {
+    overflow-y: auto;
+}
+
+#sidebar {
+    transition: height .5s;
+}
+
+
