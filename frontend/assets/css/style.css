@@ -11,6 +11,14 @@
     background-color: #ACACAC;
 }
 
+.rounded-10 {
+    border-radius: 10px;
+}
+
+.rounded-20 {
+    border-radius: 20px;
+}
+
 .text-color1 {
     color: #010049;
 }
@@ -51,5 +59,3 @@ body {
 #sidebar {
     transition: height .5s;
 }
-
-
