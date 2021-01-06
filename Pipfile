@@ -9,6 +9,7 @@ flask-mysql = "*"
 flask-mysqldb = "*"
 flask-mysql-connector = "*"
 pymysql = "*"
+flask-classful = "*"
 
 [dev-packages]
 

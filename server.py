@@ -2,6 +2,7 @@ import pymysql
 from flask import Flask, render_template
 from config import Config
 from model import UserModel
+from controller import *
 
 
 class Server:
@@ -11,30 +12,9 @@ class Server:
         config = Config().get()
         self.mysql = pymysql.connect(**config)
 
-        @self.app.route('/')
-        @self.app.route('/home')
-        def index():
-            return render_template("home.html")
-
-        @self.app.route('/login')
-        def login():
-            return render_template("login.html")
-
-        @self.app.route('/register')
-        def register():
-            return render_template("register.html")
-
-        @self.app.route('/profile')
-        def profile():
-            return render_template("profile.html")
-
-        @self.app.route('/orders')
-        def orders():
-            return render_template("orders.html")
-
-        @self.app.route('/events')
-        def events():
-            return render_template("events.html")
+        
 
     def run(self):
+        CustomerController.register(self.app, route_base='/')
+        AuthController.register(self.app, route_base='/')
         self.app.run()
