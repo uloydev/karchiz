@@ -32,27 +32,43 @@
                     <div>
                         <li class="nav-item">
                             <a class="nav-link active" href="/profile">
-                                <img class="p-2 bg-white rounded-10 my-3 mx-auto d-block" src="/assets/img/icons/button_profile.png">
+                                <img class="p-2 bg-white rounded-10 my-3 mx-auto d-block"
+                                    src="/assets/img/icons/button_profile.png">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/events">
-                                <img class="p-2 bg-white rounded-10 my-3 mx-auto d-block" src="/assets/img/icons/button_events.png">
+                                <img class="p-2 bg-white rounded-10 my-3 mx-auto d-block"
+                                    src="/assets/img/icons/button_events.png">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/orders">
-                                <img class="p-2 bg-white rounded-10 my-3 mx-auto d-block" src="/assets/img/icons/button_orders.png">
+                                <img class="p-2 bg-white rounded-10 my-3 mx-auto d-block"
+                                    src="/assets/img/icons/button_orders.png">
                             </a>
                         </li>
                     </div>
                     <a href="#">
-                        <img class="p-2 bg-color1 rounded-10 my-3 mx-auto d-block" src="/assets/img/icons/button_logout.png" >
+                        <img class="p-2 bg-color1 rounded-10 my-3 mx-auto d-block"
+                            src="/assets/img/icons/button_logout.png">
                     </a>
                 </ul>
             </nav>
             <div class="col-md-11 h-100" id="content">
                 <div class="container">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="mx-5 alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                     <!-- content goes here -->
                     {% block content %}
                     {% endblock %}

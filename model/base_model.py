@@ -1,8 +1,9 @@
 from pymysql.connections import Connection
+from database import DB
 
 class BaseModel:
-    def __init__(self, mysql: Connection):
-        self._mysql = mysql
+    def __init__(self):
+        self._mysql = DB.connection()
         self._table : str
     
     def insert(self, data: dict) -> bool:

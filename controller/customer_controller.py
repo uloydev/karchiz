@@ -4,7 +4,7 @@ from flask import render_template
 class CustomerController(FlaskView):
     @route('/')
     @route('/home')
-    def index(self):
+    def home(self):
         return render_template("home.html")
 
     @route('/profile')
