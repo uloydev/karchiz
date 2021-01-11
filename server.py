@@ -11,7 +11,11 @@ class Server:
         
         config = Config().get()
         self.mysql = pymysql.connect(**config)
-
+        # _user = UserModel(self.mysql)
+        # result = _user.get_all()
+        # for user in result:
+        #     print(f"user {user['id']} -> age {user['age']}")
+        # exit()
         
 
     def run(self):
