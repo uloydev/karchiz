@@ -21,7 +21,8 @@ class AuthController(FlaskView):
     def register_page(self):
         return render_template("register.html")
 
-    # @route('/test')
-    # @Middleware.authenticated
-    # def test(self):
-    #     return 'ok'
+    @route('/logout')
+    def logout(self):
+        session.clear()
+        flash('Sukses logout akun')
+        return redirect(url_for('AuthController:login_page'))
