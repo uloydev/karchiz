@@ -7,6 +7,7 @@ class AuthController(FlaskView):
     @route('/login', methods=['GET', 'POST'])
     def login_page(self):
         if session.get('username'):
+            flash("Kamu sudah login")
             return redirect(url_for("CustomerController:home_0"))
         if request.method == 'POST':
             user_model = UserModel()
@@ -17,8 +18,18 @@ class AuthController(FlaskView):
                 flash('Username Dan Password Salah')
         return render_template("login.html")
 
-    @route('/register')
+    @route('/register', methods=['GET', 'POST'])
     def register_page(self):
+        if session.get('username'):
+            flash("Kamu sudah login")
+            return redirect(url_for("CustomerController:home_0"))
+        if request.method == 'POST':
+            user_model = UserModel()
+            if user_model.insert(request.form):
+                flash("registrasi sukses, silahkan Login!")
+                return redirect(url_for("AuthController:login_page"))
+            else:
+                flash('Registrasi Gagal!')
         return render_template("register.html")
 
     @route('/logout')
