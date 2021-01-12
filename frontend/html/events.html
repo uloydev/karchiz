@@ -26,15 +26,11 @@ Events
         <h5 class="mb-3">{{event['title']}}</h5>
         <p>{{event['schedule']}}</p>
         <p>{{event['description']}}</p>
+        {% for ticket in event['tickets'] %}
         <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-            Bronze @ IDR 20000
+            {{ticket['type']}} @ IDR {{"{:,}".format(ticket['price'])}}
         </a>
-        <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-            Silver @ IDR 50000
-        </a>
-        <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-            Gold @ IDR 100000
-        </a>
+        {% endfor %}
     </div>
     {% endfor %}
 </div>

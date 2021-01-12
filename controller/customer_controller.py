@@ -1,6 +1,6 @@
 from flask_classful import FlaskView, route
 from flask import render_template, render_template, request, session, flash, redirect, url_for
-from model import EventModel, CategoryModel
+from model import EventModel, CategoryModel, TicketModel
 
 class CustomerController(FlaskView):
 
@@ -33,6 +33,7 @@ class CustomerController(FlaskView):
             return redirect(url_for("AuthController:login_page"))
         event_model = EventModel()
         category_model = CategoryModel()
+        ticket_model = TicketModel()
         current_category = request.args.get('category')
         if current_category and current_category != 'all':
             current_category = int(current_category)
@@ -40,6 +41,7 @@ class CustomerController(FlaskView):
         else:
             events = event_model.get_all()
             current_category = 'all'
+        events = ticket_model.get_event_tickets(events)
         categories = category_model.get_all()
         return render_template("events.html", 
             events=events,
