@@ -41,6 +41,17 @@ class BaseModel:
             print(e)
             return {}
 
+    def get_where(self, condition: str) -> list:
+        __query = f'SELECT * FROM {self._table} WHERE {condition}'
+        try:
+            __cursor = self._mysql.cursor()
+            __cursor.execute(__query)
+            self._mysql.commit()
+            return __cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
+
     def update(self, data: dict, _id: int) -> bool:
         __items = [ f'{key}="{data[key]}"' for key in data]
         __query = f'UPDATE {self._table} SET {",".join(__items)} WHERE id = {_id}'
