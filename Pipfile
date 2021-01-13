@@ -5,9 +5,6 @@ name = "pypi"
 
 [packages]
 flask = "*"
-flask-mysql = "*"
-flask-mysqldb = "*"
-flask-mysql-connector = "*"
 pymysql = "*"
 flask-classful = "*"
 

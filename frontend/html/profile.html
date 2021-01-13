@@ -6,32 +6,50 @@ My Profile
 
 {% block content %}
 <div class="text-center my-5">
-    <img src="https://picsum.photos/200" class="rounded-circle bg-color1 p-1" width="200px">
+    {% if current_user['avatar'] %}
+        <img src="/assets/uploads/{{current_user['avatar']}}" class="rounded-circle bg-color1 p-1" width="200px">
+    {% else %}
+        <img src="https://picsum.photos/200" class="rounded-circle bg-color1 p-1" width="200px">
+    {% endif %}
 </div>
 <div class="row">
     <div class="col text-right">
         <p class="py-2">Username</p>
-        <p class="py-2">Fullname</p>
+        <p class="py-2">Password</p>
         <p class="py-2">Gender</p>
         <p class="py-2">Age</p>
+        <p class="py-2">Avatar</p>
     </div>
     <div class="p-1 rounded-pill bg-color2 mx-3"></div>
     <div class="col">
-        <div class="form-group mt-1">
-            <input type="text" class="form-control bg-color3 rounded-pill">
-        </div>
-        <div class="form-group mt-1">
-            <input type="text" class="form-control bg-color3 rounded-pill">
-        </div>
-        <div class="form-group mt-1">
-            <select class="form-control bg-color3 rounded-pill">
-                <option value="pria">Pria</option>
-                <option value="wanita">Wanita</option>
-            </select>
-        </div>
-        <div class="form-group mt-1">
-            <input type="number" class="form-control bg-color3 rounded-pill">
-        </div>
+        <form action="" method="post" id="updateProfileForm" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{current_user['id']}}">
+            <div class="form-group mt-1">
+                <input type="text" class="form-control bg-color3 rounded-pill" value="{{current_user['username']}}"
+                    name="username">
+            </div>
+            <div class="form-group mt-1">
+                <input type="password" class="form-control bg-color3 rounded-pill mr-3"
+                    value="{{current_user['password']}}" data-toggle="password" name="password">
+            </div>
+            <div class="form-group mt-1">
+                <select class="form-control bg-color3 rounded-pill" name="gender">
+                    <option value="pria" {% if current_user['gender'] == 'pria' %} selected {% endif %}>Pria</option>
+                    <option value="wanita" {% if current_user['gender'] == 'wanita' %} selected {% endif %}>Wanita</option>
+                </select>
+            </div>
+            <div class="form-group mt-1">
+                <input type="number" class="form-control bg-color3 rounded-pill" value="{{current_user['age']}}"
+                    name="age">
+            </div>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input d-none" id="inputAvatar" name="avatar" accept="image/*">
+                    <label class="custom-file-label bg-color3" for="inputAvatar">Choose file</label>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+<button type="submit" class="btn my-5 mx-auto bg-color1 rounded-pill d-block text-white px-5" form="updateProfileForm">Update</button>
 {% endblock %}

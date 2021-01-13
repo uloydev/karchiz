@@ -168,14 +168,14 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'ajengarifacr', 'ajengacr048', 'FEMALE', '20', null);
-INSERT INTO `user` VALUES ('2', 'albanikautsar', 'albani047', 'MALE', '25', null);
-INSERT INTO `user` VALUES ('3', 'alfianpratama', 'alfian050', 'MALE', '23', null);
-INSERT INTO `user` VALUES ('4', 'putrisarahft', 'putri037', 'FEMALE', '19', null);
-INSERT INTO `user` VALUES ('5', 'wahyumiftahul', 'wahyu060', 'MALE', '18', null);
-INSERT INTO `user` VALUES ('6', 'dylanminn', '123minnete', 'MALE', '29', null);
-INSERT INTO `user` VALUES ('7', 'braedenlm', '456lemasters', 'MALE', '23', null);
-INSERT INTO `user` VALUES ('8', 'namdosan', '789dosan', 'MALE', '25', null);
-INSERT INTO `user` VALUES ('9', 'carlalala', 'carla025', 'FEMALE', '27', null);
-INSERT INTO `user` VALUES ('10', 'seodalmi', 'dalmi100', 'FEMALE', '24', null);
+INSERT INTO `user` VALUES ('1', 'ajengarifacr', 'ajengacr048', 'wanita', '20', null);
+INSERT INTO `user` VALUES ('2', 'albanikautsar', 'albani047', 'pria', '25', null);
+INSERT INTO `user` VALUES ('3', 'alfianpratama', 'alfian050', 'pria', '23', null);
+INSERT INTO `user` VALUES ('4', 'putrisarahft', 'putri037', 'wanita', '19', null);
+INSERT INTO `user` VALUES ('5', 'wahyumiftahul', 'wahyu060', 'pria', '18', null);
+INSERT INTO `user` VALUES ('6', 'dylanminn', '123minnete', 'pria', '29', null);
+INSERT INTO `user` VALUES ('7', 'braedenlm', '456lemasters', 'pria', '23', null);
+INSERT INTO `user` VALUES ('8', 'namdosan', '789dosan', 'pria', '25', null);
+INSERT INTO `user` VALUES ('9', 'carlalala', 'carla025', 'wanita', '27', null);
+INSERT INTO `user` VALUES ('10', 'seodalmi', 'dalmi100', 'wanita', '24', null);
 SET FOREIGN_KEY_CHECKS=1;

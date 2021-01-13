@@ -1,6 +1,9 @@
+import os
 from flask_classful import FlaskView, route
 from flask import render_template, render_template, request, session, flash, redirect, url_for
-from model import EventModel, CategoryModel, TicketModel
+from werkzeug.utils import secure_filename
+from model import EventModel, CategoryModel, TicketModel, UserModel
+
 
 class CustomerController(FlaskView):
 
@@ -8,28 +11,45 @@ class CustomerController(FlaskView):
     @route('/home')
     def home(self):
         if not session.get('username'):
-            flash('Kamu Belum Login!')
+            flash('Kamu Belum Login!', 'error')
             return redirect(url_for("AuthController:login_page"))
         return render_template("home.html")
 
-    @route('/profile')
+    @route('/profile', methods=['GET', 'POST'])
     def profile(self):
         if not session.get('username'):
-            flash('Kamu Belum Login!')
+            flash('Kamu Belum Login!', 'error')
             return redirect(url_for("AuthController:login_page"))
-        return render_template("profile.html")
+        
+        user_model = UserModel()
+        if request.method == 'POST':
+            form = request.form.to_dict()
+            avatar = request.files['avatar']
+            if avatar:
+                filename = secure_filename(avatar.filename)
+                avatar.save(os.path.join('./frontend/assets/uploads', filename))
+                form['avatar'] = filename
+            # return filename
+            if user_model.update(form, form['id']):
+                flash("Berhasil update data user!", 'success')
+            else:
+                flash('Gagal update data user!', 'error')
+        
+        current_user = user_model.get_current_user()
+        print(current_user)
+        return render_template("profile.html", current_user=current_user)
 
     @route('/orders')
     def orders(self):
         if not session.get('username'):
-            flash('Kamu Belum Login!')
+            flash('Kamu Belum Login!', 'error')
             return redirect(url_for("AuthController:login_page"))
         return render_template("orders.html")
 
     @route('/events')
     def events(self):
         if not session.get('username'):
-            flash('Kamu Belum Login!')
+            flash('Kamu Belum Login!', 'error')
             return redirect(url_for("AuthController:login_page"))
         event_model = EventModel()
         category_model = CategoryModel()
