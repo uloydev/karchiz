@@ -6,40 +6,15 @@ My Orders
 
 {% block content %}
 <!-- content goes here -->
+{% for order in orders %}
 <div class="my-4">
-    <p>Order #1</p>
+    <p>Order #{{order['id']}}</p>
     <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
-        <p class="text-color3">Event name : Event ga penting</p>
-        <p>Time : 22-02-2020 22:00 -> 23-02-2020 00:00</p>
-        <p>Price : IDR 22000</p>
-        <span class="text-right d-block">11-01-2001 16:00</span>
+        <p class="text-color3">{{order['event']['title']}}</p>
+        <p>Time : {{order['event']['schedule']}}</p>
+        <p>Price : {{order['ticket']['price']}}</p>
+        <span class="text-right d-block">{{order['order_time']}}</span>
     </div>
 </div>
-<div class="my-4">
-    <p>Order #1</p>
-    <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
-        <p class="text-color3">Event name : Event ga penting</p>
-        <p>Time : 22-02-2020 22:00 -> 23-02-2020 00:00</p>
-        <p>Price : IDR 22000</p>
-        <span class="text-right d-block">11-01-2001 16:00</span>
-    </div>
-</div>
-<div class="my-4">
-    <p>Order #1</p>
-    <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
-        <p class="text-color3">Event name : Event ga penting</p>
-        <p>Time : 22-02-2020 22:00 -> 23-02-2020 00:00</p>
-        <p>Price : IDR 22000</p>
-        <span class="text-right d-block">11-01-2001 16:00</span>
-    </div>
-</div>
-<div class="my-4">
-    <p>Order #1</p>
-    <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
-        <p class="text-color3">Event name : Event ga penting</p>
-        <p>Time : 22-02-2020 22:00 -> 23-02-2020 00:00</p>
-        <p>Price : IDR 22000</p>
-        <span class="text-right d-block">11-01-2001 16:00</span>
-    </div>
-</div>
+{% endfor %}
 {% endblock %}

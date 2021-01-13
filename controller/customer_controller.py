@@ -2,7 +2,7 @@ import os
 from flask_classful import FlaskView, route
 from flask import render_template, render_template, request, session, flash, redirect, url_for
 from werkzeug.utils import secure_filename
-from model import EventModel, CategoryModel, TicketModel, UserModel
+from model import EventModel, CategoryModel, TicketModel, UserModel, OrderModel
 
 
 class CustomerController(FlaskView):
@@ -29,7 +29,6 @@ class CustomerController(FlaskView):
                 filename = secure_filename(avatar.filename)
                 avatar.save(os.path.join('./frontend/assets/uploads', filename))
                 form['avatar'] = filename
-            # return filename
             if user_model.update(form, form['id']):
                 flash("Berhasil update data user!", 'success')
             else:
@@ -44,7 +43,12 @@ class CustomerController(FlaskView):
         if not session.get('username'):
             flash('Kamu Belum Login!', 'error')
             return redirect(url_for("AuthController:login_page"))
-        return render_template("orders.html")
+
+        order_model = OrderModel()
+        ticket_model = TicketModel()
+        orders = order_model.get_user_orders()
+        orders = ticket_model.get_order_ticket(orders)
+        return render_template("orders.html", orders=orders)
 
     @route('/events')
     def events(self):

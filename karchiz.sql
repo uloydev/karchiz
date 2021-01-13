@@ -87,8 +87,8 @@ INSERT INTO `guest_star` VALUES ('6', 'Jay Z', '6', null);
 -- ----------------------------
 -- Table structure for order
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `ticket_id` int(11) DEFAULT NULL,
@@ -97,23 +97,23 @@ CREATE TABLE `order` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `ticket_id` (`ticket_id`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of order
+-- Records of orders
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '1', '9', '2020-12-30 22:00:13', '2250000');
-INSERT INTO `order` VALUES ('2', '2', '7', '2020-12-31 16:45:20', '1400000');
-INSERT INTO `order` VALUES ('3', '3', '5', '2020-12-31 19:30:22', '1300000');
-INSERT INTO `order` VALUES ('4', '4', '3', '2021-01-01 04:15:36', '2000000');
-INSERT INTO `order` VALUES ('5', '5', '2', '2021-01-01 09:22:47', '1600000');
-INSERT INTO `order` VALUES ('6', '6', '1', '2021-01-01 10:02:22', '1200000');
-INSERT INTO `order` VALUES ('7', '7', '4', '2021-01-01 20:56:18', '800000');
-INSERT INTO `order` VALUES ('8', '8', '6', '2021-01-02 12:03:56', '1750000');
-INSERT INTO `order` VALUES ('9', '9', '8', '2021-01-02 13:40:02', '1800000');
-INSERT INTO `order` VALUES ('10', '10', '1', '2021-01-03 02:05:05', '1200000');
+INSERT INTO `orders` VALUES ('1', '1', '9', '2020-12-30 22:00:13', '2250000');
+INSERT INTO `orders` VALUES ('2', '2', '7', '2020-12-31 16:45:20', '1400000');
+INSERT INTO `orders` VALUES ('3', '3', '5', '2020-12-31 19:30:22', '1300000');
+INSERT INTO `orders` VALUES ('4', '4', '3', '2021-01-01 04:15:36', '2000000');
+INSERT INTO `orders` VALUES ('5', '5', '2', '2021-01-01 09:22:47', '1600000');
+INSERT INTO `orders` VALUES ('6', '6', '1', '2021-01-01 10:02:22', '1200000');
+INSERT INTO `orders` VALUES ('7', '7', '4', '2021-01-01 20:56:18', '800000');
+INSERT INTO `orders` VALUES ('8', '8', '6', '2021-01-02 12:03:56', '1750000');
+INSERT INTO `orders` VALUES ('9', '9', '8', '2021-01-02 13:40:02', '1800000');
+INSERT INTO `orders` VALUES ('10', '10', '1', '2021-01-03 02:05:05', '1200000');
 
 -- ----------------------------
 -- Table structure for ticket
