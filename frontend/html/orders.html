@@ -12,7 +12,7 @@ My Orders
     <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
         <p class="text-color3">{{order['event']['title']}}</p>
         <p>Time : {{order['event']['schedule']}}</p>
-        <p>Price : {{order['ticket']['price']}}</p>
+        <p>Price : {{"{:,}".format(order['ticket']['price'])}}</p>
         <span class="text-right d-block">{{order['order_time']}}</span>
     </div>
 </div>

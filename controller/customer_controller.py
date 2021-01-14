@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask_classful import FlaskView, route
 from flask import render_template, render_template, request, session, flash, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -71,3 +72,21 @@ class CustomerController(FlaskView):
             events=events,
             categories=categories, 
             current_category=current_category)
+
+    @route('/place-order', methods=['POST'])
+    def place_order(self):
+        if not session.get('username'):
+            flash('Kamu Belum Login!', 'error')
+            return redirect(url_for("AuthController:login_page"))
+        user_model = UserModel()
+        order_model = OrderModel()
+        user = user_model.get_current_user()
+        form = request.form.to_dict()
+        form['user_id'] = user['id']
+        form['order_time'] = datetime.now().strftime('%Y-%m-%d %X')
+        if order_model.insert(form):
+            flash("Berhasil order event!", 'success')
+        else:
+            flash("Gagal order event!", 'error')
+        return redirect(url_for('CustomerController:orders'))
+            

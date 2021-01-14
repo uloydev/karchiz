@@ -20,6 +20,9 @@ Events
         </div>
     </div>
 </div>
+<form action="/place-order" id="orderForm" method="post">
+    <input type="hidden" name="ticket_id">
+</form>
 <div class="row no-gutters justify-content-center">
     {% for event in events %}
     <div class="col-md-3 m-4 shadow text-white bg-color2 p-3 rounded-20">
@@ -27,7 +30,7 @@ Events
         <p>{{event['schedule']}}</p>
         <p>{{event['description']}}</p>
         {% for ticket in event['tickets'] %}
-        <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
+        <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm btn-order" data-ticket-id="{{ticket['id']}}">
             {{ticket['type']}} @ IDR {{"{:,}".format(ticket['price'])}}
         </a>
         {% endfor %}
