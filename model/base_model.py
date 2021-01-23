@@ -2,9 +2,11 @@ from pymysql.connections import Connection
 from database import DB
 
 class BaseModel:
+    _mysql: Connection
+    _table: str
+
     def __init__(self):
         self._mysql = DB.connection()
-        self._table : str
     
     def insert(self, data: dict) -> bool:
         __columns = data.keys()

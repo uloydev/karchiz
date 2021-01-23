@@ -1,5 +1,6 @@
 from .base_model import BaseModel
 from flask import session
+from entity import User
 
 class UserModel(BaseModel):
     def __init__(self):
@@ -18,9 +19,16 @@ class UserModel(BaseModel):
             print(e)
         return False
 
-    def get_current_user(self) -> dict:
+    def get_current_user(self) -> User:
         condition = f"username = '{session.get('username')}'"
-        user = self.get_where(condition)
-        if not user:
-            return {}
-        return user[0]
+        data = self.get_where(condition)
+        return self.parse(data[0])
+
+    def parse(self, data: dict) -> User:
+        return User(**data)
+
+    def parseList(self, data: list[dict]) -> list[User]:
+        result = []
+        for item in data:
+            result.append(User(**item))
+        return result

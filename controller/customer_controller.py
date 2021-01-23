@@ -11,10 +11,18 @@ class CustomerController(FlaskView):
     @route('/')
     @route('/home')
     def home(self):
+        event_model = EventModel()
+        ticket_model = TicketModel()
+        order_model = OrderModel()
         if not session.get('username'):
             flash('Kamu Belum Login!', 'error')
             return redirect(url_for("AuthController:login_page"))
-        return render_template("home.html")
+        events = event_model.get_all()
+        events = event_model.parseList(events)[-3:]
+        events = ticket_model.get_event_tickets(events)
+        orders = order_model.get_user_orders()[-2:]
+        orders = ticket_model.get_order_ticket(orders)
+        return render_template("home.html", events = events, orders=orders)
 
     @route('/profile', methods=['GET', 'POST'])
     def profile(self):
@@ -66,8 +74,10 @@ class CustomerController(FlaskView):
         else:
             events = event_model.get_all()
             current_category = 'all'
+        events = event_model.parseList(events)
         events = ticket_model.get_event_tickets(events)
         categories = category_model.get_all()
+        categories = category_model.parseList(categories)
         return render_template("events.html", 
             events=events,
             categories=categories, 
@@ -82,7 +92,7 @@ class CustomerController(FlaskView):
         order_model = OrderModel()
         user = user_model.get_current_user()
         form = request.form.to_dict()
-        form['user_id'] = user['id']
+        form['user_id'] = user.get_id()
         form['order_time'] = datetime.now().strftime('%Y-%m-%d %X')
         if order_model.insert(form):
             flash("Berhasil order event!", 'success')

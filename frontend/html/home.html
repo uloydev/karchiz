@@ -7,65 +7,57 @@ Home
 {% block content %}
 <!-- content goes here -->
 <div class="p-4 rounded-20 my-4 bg-color3 shadow-lg">
-    <h4 class="mb-4 font-weight-bold">Upcoming Events</h4>
+    <form action="/place-order" id="orderForm" method="post">
+        <input type="hidden" name="ticket_id">
+    </form>
+    <div class="row mb-4">
+        <div class="col">
+            <h4 class="font-weight-bold">Upcoming Events</h4>
+        </div>
+        <div class="col text-right">
+            <a href="/events" class="btn btn-sm mr-5 px-5 bg-white text-color1 rounded-pill">See All Events</a>
+        </div>
+    </div>
     <div class="row no-gutters justify-content-center">
+        {% for event in events %}
         <div class="col-md-3 p-3 mx-3 rounded-20 bg-color2 text-white">
-            <h5 class="mb-3">Event Name : Event Jelek</h5>
-            <p>20-02-2021 20:00</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae est, ratione quidem repudiandae doloribus
-                impedit necessitatibus quisquam asperiores</p>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Bronze @ IDR 20000
+            <h5 class="mb-3">{{ event.get_title() }}</h5>
+            <p>{{ event.get_schedule() }}</p>
+            <p>{{ event.get_description() }}</p>
+            {% for ticket in event.get_tickets() %}
+            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm btn-order" data-ticket-id="{{ticket.get_id()}}">
+                {{ticket.get_type()}} @ IDR {{"{:,}".format(ticket.get_price())}}
             </a>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Silver @ IDR 50000
-            </a>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Gold @ IDR 100000
-            </a>
+            {% endfor %}
         </div>
-        <div class="col-md-3 p-3 mx-3 rounded-20 bg-color2 text-white">
-            <h5 class="mb-3">Event Name : Event Jelek</h5>
-            <p>20-02-2021 20:00</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae est, ratione quidem repudiandae doloribus
-                impedit necessitatibus quisquam asperiores</p>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Bronze @ IDR 20000
-            </a>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Silver @ IDR 50000
-            </a>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Gold @ IDR 100000
-            </a>
-        </div>
-        <div class="col-md-3 p-3 mx-3 rounded-20 bg-color2 text-white">
-            <h5 class="mb-3">Event Name : Event Jelek</h5>
-            <p>20-02-2021 20:00</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae est, ratione quidem repudiandae doloribus
-                impedit necessitatibus quisquam asperiores</p>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Bronze @ IDR 20000
-            </a>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Silver @ IDR 50000
-            </a>
-            <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm">
-                Gold @ IDR 100000
-            </a>
-        </div>
+        {% endfor %}
     </div>
 </div>
 <div class="p-4 rounded-20 my-4 bg-color3 shadow-lg">
-    <h4 class="mb-4 font-weight-bold">Last Order</h4>
-    <div class="rounded-20 bg-color2 p-3 mx-5 text-white">
-        <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
-            <p class="text-color3">Event name : Event ga penting</p>
-            <p>Time : 22-02-2020 22:00 -> 23-02-2020 00:00</p>
-            <p>Price : IDR 22000</p>
-            <span class="text-right d-block">11-01-2001 16:00</span>
+    <div class="row mb-4">
+        <div class="col">
+            <h4 class="font-weight-bold">Last Order</h4>
+        </div>
+        <div class="col text-right">
+            <a href="/orders" class="btn btn-sm mr-5 px-5 bg-white text-color1 rounded-pill">See All Orders</a>
         </div>
     </div>
+    {% if not orders %}
+    <p class="text-center text-color2">Ups kamu belum pernah order nih..</p>
+    <div class="text-center">
+        <a href="/events" class="btn btn-sm px-5 bg-color2 text-color3 rounded-pill">order sekarang</a>
+    </div>
+    {% endif %}
+    {% for order in orders %}
+    <div class="rounded-20 bg-color2 p-3 mx-5 mb-5 text-white">
+        <div class="bg-color2 shadow-sm text-white p-3 rounded-20">
+            <p class="text-color3">{{order.get_event().get_title()}}</p>
+            <p>Time : {{order.get_event().get_schedule()}}</p>
+            <p>Price : {{"{:,}".format(order.get_ticket().get_price())}}</p>
+            <span class="text-right d-block">{{order.get_order_time()}}</span>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

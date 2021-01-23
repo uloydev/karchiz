@@ -1,4 +1,5 @@
 from .base_model import BaseModel
+from entity import Event
 
 class EventModel(BaseModel):
     def __init__(self):
@@ -8,3 +9,12 @@ class EventModel(BaseModel):
     def get_category(self, category_id: int) -> list:
         condition = f'category_id = {category_id}'
         return self.get_where(condition)
+
+    def parse(self, data: dict) -> Event:
+        return Event(**data)
+
+    def parseList(self, data: list[dict]) -> list[Event]:
+        result = []
+        for item in data:
+            result.append(Event(**item))
+        return result

@@ -15,4 +15,12 @@ if (urlPath == '/events') {
         inpputTicketId.val($(this).data('ticket-id'))
         orderForm.submit()
     })
+} else if (urlPath == '/' || urlPath == '/home') {
+    const orderForm = $('#orderForm')
+    const inpputTicketId = $('input[name="ticket_id"]')
+    $('.btn-order').click(function (e) {
+        e.preventDefault()
+        inpputTicketId.val($(this).data('ticket-id'))
+        orderForm.submit()
+    })
 }

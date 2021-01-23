@@ -14,7 +14,7 @@ Events
                 <option value="all" {% if current_category == 'all' %}selected {% endif %}>All</option>
                 {% for category in categories %}
                 {{current_category}}
-                <option value="{{ category['id'] }}" {% if current_category == category['id'] %}selected {% endif %}>{{ category['name'] }}</option>
+                <option value="{{ category.get_id() }}" {% if current_category == category.get_id() %}selected {% endif %}>{{ category.get_name() }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -26,12 +26,12 @@ Events
 <div class="row no-gutters justify-content-center">
     {% for event in events %}
     <div class="col-md-3 m-4 shadow text-white bg-color2 p-3 rounded-20">
-        <h5 class="mb-3">{{event['title']}}</h5>
-        <p>{{event['schedule']}}</p>
-        <p>{{event['description']}}</p>
-        {% for ticket in event['tickets'] %}
-        <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm btn-order" data-ticket-id="{{ticket['id']}}">
-            {{ticket['type']}} @ IDR {{"{:,}".format(ticket['price'])}}
+        <h5 class="mb-3">{{event.get_title()}}</h5>
+        <p>{{event.get_schedule()}}</p>
+        <p>{{event.get_description()}}</p>
+        {% for ticket in event.get_tickets() %}
+        <a href="#" class="btn btn-block bg-white text-black rounded-pill btn-sm btn-order" data-ticket-id="{{ticket.get_id()}}">
+            {{ticket.get_type()}} @ IDR {{"{:,}".format(ticket.get_price())}}
         </a>
         {% endfor %}
     </div>
