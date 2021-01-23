@@ -1,6 +1,5 @@
 from interface import implements
 from .entity import Entity
-from .people import People
 
 
 class User(implements(Entity)):
