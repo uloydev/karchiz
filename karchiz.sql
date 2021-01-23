@@ -43,7 +43,6 @@ CREATE TABLE `event` (
   `title` varchar(30) NOT NULL,
   `schedule` datetime NOT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
   `description` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
@@ -53,12 +52,12 @@ CREATE TABLE `event` (
 -- ----------------------------
 -- Records of event
 -- ----------------------------
-INSERT INTO `event` VALUES ('1', 'Stadiums in the Summer Tour', '2021-01-05 20:00:00', '1', null, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit');
-INSERT INTO `event` VALUES ('2', 'On the Road Again Tour', '2021-01-07 15:30:00', '1', null, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-INSERT INTO `event` VALUES ('3', 'Airbeat-One Festival', '2021-02-11 21:00:00', '4', null, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-INSERT INTO `event` VALUES ('4', 'Weekend at Fattys', '2021-03-13 20:30:00', '3', null, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-INSERT INTO `event` VALUES ('5', 'OMG Tour', '2021-04-20 16:00:00', '2', null, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-INSERT INTO `event` VALUES ('6', '4:44 Tour', '2021-04-05 22:00:00', '5', null, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+INSERT INTO `event` VALUES ('1', 'Stadiums in the Summer Tour', '2021-01-05 20:00:00', '1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit');
+INSERT INTO `event` VALUES ('2', 'On the Road Again Tour', '2021-01-07 15:30:00', '1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+INSERT INTO `event` VALUES ('3', 'Airbeat-One Festival', '2021-02-11 21:00:00', '4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+INSERT INTO `event` VALUES ('4', 'Weekend at Fattys', '2021-03-13 20:30:00', '3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+INSERT INTO `event` VALUES ('5', 'OMG Tour', '2021-04-20 16:00:00', '2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+INSERT INTO `event` VALUES ('6', '4:44 Tour', '2021-04-05 22:00:00', '5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
 -- ----------------------------
 -- Table structure for order
