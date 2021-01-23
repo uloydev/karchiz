@@ -18,7 +18,7 @@ class OrderModel(BaseModel):
             list[Order]: list / array dari object class Order
         """
         user = UserModel().get_current_user()
-        orders = self.get_where(f'user_id={user["id"]}')
+        orders = self.get_where(f'user_id={user.get_id()}')
         return self.parseList(orders)
 
     def parse(self, data: dict) -> Order:
