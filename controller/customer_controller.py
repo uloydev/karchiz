@@ -30,11 +30,15 @@ class CustomerController(FlaskView):
         events = event_model.get_all()
         # parsing events agar menjadi list dari object Event dan diambil tiga event terbaru
         events = event_model.parseList(events)
+        if len(events) > 3:
+            events = events[-3:]
         # mengambil data ticket dari semua events
         events = ticket_model.get_event_tickets(events)
 
         # parsing orders agar menjadi list dari object Order dan diambil dua order terbaru
-        orders = order_model.get_user_orders()[-2:]
+        orders = order_model.get_user_orders()
+        if len(orders) > 2:
+            orders = orders[-2:]
         # mengambil data ticket dari semua orders
         orders = ticket_model.get_order_ticket(orders)
         return render_template("home.html", events = events, orders=orders)
