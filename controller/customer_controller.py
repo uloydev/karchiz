@@ -20,9 +20,13 @@ class CustomerController(FlaskView):
             return redirect(url_for("AuthController:login_page"))
 
         events = event_model.get_all()
+        if len(events) > 3:
+            events = events[-3:]
         events = event_model.parseList(events)
         events = ticket_model.get_event_tickets(events)
-        orders = order_model.get_user_orders()[-2:]
+        orders = order_model.get_user_orders()
+        if len(orders) > 2:
+            orders = orders[-2:]
         orders = ticket_model.get_order_ticket(orders)
         return render_template("home.html", events = events, orders=orders)
 
