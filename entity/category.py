@@ -7,12 +7,6 @@ class Category(implements(Entity)):
     __name: str
 
     def __init__(self, id:int, name:str):
-        """Fungsi constructor class Category yang digunakan untuk mengisi properti class Category.
-
-        Args:
-            id (int): id kategori
-            name (str): nama kategori
-        """
         self.__id = id
         self.__name = name
 

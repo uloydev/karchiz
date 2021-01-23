@@ -9,14 +9,6 @@ class Ticket(implements(Entity)):
     __price: int
 
     def __init__(self, id:int, event_id:int, type:str, price:int):
-        """Fungsi constructor class Ticket yang digunakan untuk mengisi properti class Ticket.
-
-        Args:
-            id (int): id tiket
-            event_id (int): id event
-            type (str): tipe tiket
-            price (int): harga tiket
-        """
         self.__id = id
         self.__event_id = event_id
         self.__type = type

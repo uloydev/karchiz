@@ -11,15 +11,6 @@ class Event(implements(Entity)):
     __tickets: list[Ticket]
 
     def __init__(self, id:int, title:str, schedule:str, category_id:int, description:str):
-        """Fungsi constructor class Event yang digunakan untuk mengisi properti class Event.
-
-        Args:
-            id (int): id event
-            title (str): judul event
-            schedule (str): jadwal event
-            category_id (int): kategori id
-            description (str): deskripsi event
-        """
         self.__id = id
         self.__title = title
         self.__schedule = schedule

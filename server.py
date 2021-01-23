@@ -5,7 +5,6 @@ from controller import *
 class Server:
     @staticmethod
     def run():
-        """Fungsi static run digunakan untuk menjalankan server web."""
         # inisiasi Flask framework app
         app = Flask("__main__", static_url_path="/assets", template_folder="frontend/html", static_folder="frontend/assets")
         # set secret key

@@ -6,11 +6,6 @@ from model import UserModel
 class AuthController(FlaskView):
     @route('/login', methods=['GET', 'POST'])
     def login_page(self) -> str:
-        """Fungsi login_page digunakan untuk menampilkan halaman login.
-
-        Returns:
-            str: html text
-        """
         # cek jika user sudah login maka redirect ke home page
         if session.get('username'):
             flash("Kamu sudah login", 'error')
@@ -29,11 +24,6 @@ class AuthController(FlaskView):
 
     @route('/register', methods=['GET', 'POST'])
     def register_page(self):
-        """Fungsi register_page digunakan untuk menampilkan halaman register.
-
-        Returns:
-            str: html text
-        """
         # cek jika user sudah login maka redirect ke home page
         if session.get('username'):
             flash("Kamu sudah login", 'error')
@@ -52,11 +42,6 @@ class AuthController(FlaskView):
 
     @route('/logout')
     def logout(self) -> str:
-        """Fungsi logout digunakan untuk keluar dari akun.
-
-        Returns:
-            str: html text
-        """
         # membersihkan sesi user dan kembali ke halaman login
         session.clear()
         flash('Sukses logout akun', 'success')

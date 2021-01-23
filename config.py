@@ -9,10 +9,6 @@ class Config():
     cursorclass: DictCursor
 
     def __init__(self):
-        """Fungsi Constructor dari class Config.
-        
-        digunakan untuk set akun database mysql
-        """
         self.host = 'localhost'
         self.user = 'root'
         self.password ='passwordnya'
@@ -20,9 +16,4 @@ class Config():
         self.cursorclass = DictCursor
 
     def get(self) -> dict:
-        """Fungsi get config.
-
-        Returns:
-            dict: dictionary gabungan dari semua variabel / properti dari class config
-        """
         return self.__dict__

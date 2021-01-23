@@ -13,14 +13,6 @@ class Order(implements(Entity)):
     __event: Event
 
     def __init__(self, id:int, user_id:int, ticket_id:int, order_time:str):
-        """Fungsi constructor class Order yang digunakan untuk mengisi properti class Order.
-
-        Args:
-            id (int): id order
-            user_id (int): id user
-            ticket_id (int): id ticket
-            order_time (str): waktu order
-        """
         self.__id = id
         self.__ticket_id = ticket_id
         self.__user_id = user_id

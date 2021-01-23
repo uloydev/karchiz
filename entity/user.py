@@ -12,16 +12,6 @@ class User(implements(Entity)):
     __gender: str
 
     def __init__(self, id: int, avatar: str, username: str, password: str, age: int, gender: str):
-        """Fungsi constructor class User yang digunakan untuk mengisi properti class User.
-
-        Args:
-            id (int): id user
-            avatar (str): nama file avatar user
-            username (str): username user
-            password (str): password user
-            age (int): umur user
-            gender (str): jenis kelamin user
-        """
         self.__id = id
         self.__avatar = avatar
         self.__username = username
