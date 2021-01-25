@@ -55,7 +55,7 @@ class CustomerController(FlaskView):
         return render_template("profile.html", current_user=current_user)
 
     @route('/orders')
-    def orders(self):
+    def orders(self) -> str:
         order_model = OrderModel()
         ticket_model = TicketModel()
 
@@ -68,7 +68,7 @@ class CustomerController(FlaskView):
         return render_template("orders.html", orders=orders)
 
     @route('/events')
-    def events(self):
+    def events(self) -> str:
         event_model = EventModel()
         category_model = CategoryModel()
         ticket_model = TicketModel()
@@ -95,7 +95,7 @@ class CustomerController(FlaskView):
             current_category=current_category)
 
     @route('/place-order', methods=['POST'])
-    def place_order(self):
+    def place_order(self) -> str:
         user_model = UserModel()
         order_model = OrderModel()
         user = user_model.get_current_user()
